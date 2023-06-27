@@ -5,21 +5,11 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: true
-        default: 'staging'
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Node.js
